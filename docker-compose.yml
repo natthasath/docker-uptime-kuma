@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  web:
+    #image: louislam/uptime-kuma:latest
+    image: uptime-kuma:latest
+    container_name: uptime-kuma
+    restart: always
+    ports:
+      - 3001:3001
+    networks:
+      - default
+    volumes:
+      - data:/data
+
+networks:
+  default:
+    driver: bridge
+
+volumes:
+  data:
+    driver: local
