@@ -1,6 +1,6 @@
 # 🎉 Docker Uptime Kuma
 
-phpipam is an open-source web IP address management application (IPAM). Its goal is to provide light, modern and useful IP address management.
+A fancy self-hosted monitoring tool
 
 ![version](https://img.shields.io/badge/version-1.0-blue)
 ![rating](https://img.shields.io/badge/rating-★★★★★-yellow)
