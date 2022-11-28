@@ -1,8 +1,7 @@
 version: '3.9'
 services:
   web:
-    #image: louislam/uptime-kuma:latest
-    image: uptime-kuma:latest
+    image: louislam/uptime-kuma:latest
     container_name: uptime-kuma
     restart: always
     ports:
