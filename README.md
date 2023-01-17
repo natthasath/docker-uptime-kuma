@@ -1,6 +1,6 @@
 # 🎉 Docker Uptime Kuma
 
-A fancy self-hosted monitoring tool
+Uptime Kuma is an open-source observability platform that provides web-based monitoring, tracing and logging for microservices-based applications, built on Envoy proxy.
 
 ![version](https://img.shields.io/badge/version-1.0-blue)
 ![rating](https://img.shields.io/badge/rating-★★★★★-yellow)
