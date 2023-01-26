@@ -5,7 +5,7 @@ services:
     container_name: uptime-kuma
     restart: always
     ports:
-      - 3001:3001
+      - ${APP_PORT}:3001
     networks:
       - default
     volumes:
