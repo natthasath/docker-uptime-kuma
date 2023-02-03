@@ -6,7 +6,7 @@ Uptime Kuma is an open-source observability platform that provides web-based mon
 ![rating](https://img.shields.io/badge/rating-★★★★★-yellow)
 ![uptime](https://img.shields.io/badge/uptime-100%25-brightgreen)
 
-### 🥈 Run
+### 🏆 Run
 
 - [http://localhost:3001/](http://localhost:3001/) username : `admin` password : `admin`
 
