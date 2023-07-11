@@ -9,12 +9,8 @@ services:
     networks:
       - default
     volumes:
-      - data:/data
+      - ./data:/app/data
 
 networks:
   default:
     driver: bridge
-
-volumes:
-  data:
-    driver: local
