@@ -13,4 +13,10 @@ services:
 
 networks:
   default:
+    name: docker_uptime_kuma_network
     driver: bridge
+
+volumes:
+  data:
+    name: docker_uptime_kuma_data
+    driver: local
