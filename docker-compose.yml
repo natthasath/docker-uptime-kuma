@@ -1,22 +1,36 @@
-version: '3.9'
 services:
-  web:
-    image: louislam/uptime-kuma:latest
-    container_name: uptime-kuma
-    restart: always
+  uptime-kuma:
+    container_name: ${UPTIME_KUMA_CONTAINER_NAME:-uptime-kuma_app}
+    image: ${UPTIME_KUMA_IMAGE:-louislam/uptime-kuma}:${UPTIME_KUMA_VERSION:-latest}
+    restart: ${RESTART_POLICY:-always}
+    environment:
+      - TZ=${TIMEZONE:-Asia/Bangkok}
+      - UPTIME_KUMA_PORT=${APP_PORT:-3001}
+      - NODE_ENV=${NODE_ENV:-production}
     ports:
-      - ${APP_PORT}:3001
+      - ${APP_PORT:-3001}:3001
+    volumes:
+      - ${UPTIME_KUMA_DATA_PATH:-./data}:/app/data
+      - ${UPTIME_KUMA_SSL_PATH:-./ssl}:/app/ssl:ro
     networks:
       - default
-    volumes:
-      - ./data:/app/data
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:3001 || exit 1
+      interval: ${HEALTHCHECK_INTERVAL:-30s}
+      timeout: ${HEALTHCHECK_TIMEOUT:-10s}
+      retries: ${HEALTHCHECK_RETRIES:-3}
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: ${UPTIME_KUMA_MEMORY:-256M}
+    mem_reservation: ${UPTIME_KUMA_MEMORY_RESERVATION:-128M}
+    cpus: ${UPTIME_KUMA_CPUS:-0.5}
 
 networks:
   default:
-    name: docker_uptime_kuma_network
+    name: uptime-kuma_network
     driver: bridge
 
 volumes:
-  data:
-    name: docker_uptime_kuma_data
+  default:
+    name: uptime-kuma_data
     driver: local
