@@ -1,26 +1,28 @@
+name: ${GLOBAL_NAME}
+
 services:
   uptime_kuma:
     container_name: ${UPTIME_KUMA_CONTAINER_NAME}
-    image: ${UPTIME_KUMA_IMAGE}:${UPTIME_KUMA_VERSION}
+    image: ${UPTIME_KUMA_IMAGE_NAME}:${UPTIME_KUMA_IMAGE_VERSION}
     restart: ${RESTART_POLICY}
     environment:
       - TZ=${TIMEZONE}
-      - UPTIME_KUMA_PORT=${UPTIME_KUMA_PORT}
+      - UPTIME_KUMA_PORT=${UPTIME_KUMA_HTTP_PORT}
       - NODE_ENV=${UPTIME_KUMA_NODE_ENV}
     ports:
-      - ${UPTIME_KUMA_PORT}:3001
+      - ${UPTIME_KUMA_HTTP_PORT}:3001
     volumes:
       - default:/app/data
     networks:
       - default
     depends_on: []
+    security_opt:
+      - ${UPTIME_KUMA_SECURITY_OPT}
     healthcheck:
       test: wget --no-verbose --tries=1 --spider http://localhost:3001 || exit 1
       interval: ${HEALTHCHECK_INTERVAL}
       timeout: ${HEALTHCHECK_TIMEOUT}
       retries: ${HEALTHCHECK_RETRIES}
-    security_opt:
-      - no-new-privileges:true
     mem_limit: ${UPTIME_KUMA_MEMORY}
     mem_reservation: ${UPTIME_KUMA_MEMORY_RESERVATION}
     cpus: ${UPTIME_KUMA_CPUS}
